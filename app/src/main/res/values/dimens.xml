@@ -9,4 +9,5 @@
     <dimen name="btn_add_padding">6dp</dimen>
     <dimen name="big_label">8dp</dimen>
     <dimen name="table_tv_right_margin">20dp</dimen>
+    <dimen name="btn_margin">8dp</dimen>
 </resources>

@@ -9,7 +9,7 @@
             type="com.example.billingseparator.products.ProductsViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -60,7 +60,7 @@
             android:text="@string/participants"
             android:textSize="18sp" />
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:id="@+id/svParticipantsList"
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -78,7 +78,7 @@
 
             </com.google.android.material.chip.ChipGroup>
 
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -145,8 +145,7 @@
                     android:background="@drawable/table_row_bg"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:padding="5dp"
-                    >
+                    android:padding="5dp">
 
                     <TextView
                         android:id="@+id/tv_product"
@@ -154,7 +153,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/table_cell_bg"
                         android:paddingRight="10dp"
-                        android:text="Book"
+                        android:text="@string/enter_product_name"
                         android:textAppearance="@android:style/TextAppearance.Material"
                         android:textColor="@color/design_default_color_on_secondary" />
 
@@ -163,63 +162,13 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
-                        android:text="Price"
+                        android:text="@string/hint_price"
                         android:textColor="@color/design_default_color_on_secondary" />
                 </TableRow>
-                <TableRow
-                    android:id="@+id/tr_item_1"
-                    android:background="@drawable/table_row_bg"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
 
-                    <TextView
-                        android:id="@+id/tv_product_item_1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/table_cell_bg"
-                        android:paddingRight="10dp"
-                        android:text="Hello, Android, 4th Edition"
-                        android:textColor="@color/design_default_color_on_secondary" />
-
-                    <TextView
-                        android:id="@+id/tv_price_item_1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="@dimen/sv_margin"
-                        android:text="$72.00"
-                        android:textColor="@color/design_default_color_on_secondary" />
-                </TableRow>
-                <TableRow
-                    android:id="@+id/tr_item_2"
-                    android:background="@drawable/table_row_bg"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    >
-
-                    <TextView
-                        android:id="@+id/tv_product_item_2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/table_cell_bg"
-                        android:paddingRight="10dp"
-                        android:text="High Performance Android Apps sadasdasd asdasd sadsadasdasd sadasdas"
-                        android:textColor="@color/design_default_color_on_secondary" />
-
-                    <TextView
-                        android:id="@+id/tv_price_item_2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end"
-                        android:gravity="end"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="@dimen/sv_margin"
-                        android:text="$134.97"
-                        android:textColor="@color/design_default_color_on_secondary" />
-                </TableRow>
+                <!--
+                <include layout="@layout/sample_table_row" />
+                 -->
 
             </TableLayout>
 
@@ -232,11 +181,12 @@
             android:layout_width="265dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="@dimen/btn_margin"
             android:background="@android:color/holo_green_dark"
             android:text="@string/calculate"
             android:textSize="18sp" />
 
 
     </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </layout>

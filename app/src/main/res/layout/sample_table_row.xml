@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tr_item"
+    android:background="@drawable/table_row_last_bg"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    tools:showIn="@layout/products_fragment">
+
+    <TextView
+        android:id="@+id/tv_product_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/table_cell_bg"
+        android:paddingRight="10dp"
+        android:text="High Performance Android Apps"
+        android:textColor="@color/design_default_color_on_secondary" />
+
+    <TextView
+        android:id="@+id/tv_price_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:gravity="end"
+        android:paddingLeft="10dp"
+        android:paddingRight="@dimen/sv_margin"
+        android:text="$134.97"
+        android:textColor="@color/design_default_color_on_secondary" />
+</TableRow>
