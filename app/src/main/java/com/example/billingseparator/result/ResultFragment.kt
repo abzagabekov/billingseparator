@@ -14,9 +14,6 @@ import com.example.billingseparator.R
 import com.example.billingseparator.databinding.ResultFragmentBinding
 import kotlinx.android.synthetic.main.sample_table_row.view.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class ResultFragment : Fragment() {
 
     override fun onCreateView(
@@ -30,13 +27,21 @@ class ResultFragment : Fragment() {
 
         resultViewModel.countResults()
 
+        var summary: Double? = null
         resultViewModel.getParticipants()?.forEach {
             val newRow =
                 inflater.inflate(R.layout.sample_table_row, container, false) as TableRow
             newRow.tv_product_item.text = it.name
             newRow.tv_price_item.text = it.billSummary.toString()
+            summary = it.billSummary
             binding.tableResult.addView(newRow)
         }
+
+        val newRow =
+            inflater.inflate(R.layout.sample_table_row, container, false) as TableRow
+        newRow.tv_price_item.text = "${getString(R.string.sumary)} ${summary.toString()}"
+        newRow.tv_product_item.text = ""
+        binding.tableResult.addView(newRow)
 
         return binding.root
     }

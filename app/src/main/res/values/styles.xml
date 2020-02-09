@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">#1679a9</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
@@ -56,7 +56,7 @@
     </style>
 
     <color name="my_app_primary_variant_color">#D81B60</color>
-    <color name="my_app_secondary_variant_color">#D87C60</color>
+    <color name="my_app_secondary_variant_color">#F4E9C1</color>
     <color name="my_app_surface_color">#D45C</color>
     <color name="my_app_color_on_primary">#6200EE</color>
     <color name="my_app_color_on_secondary">#3700B3</color>
