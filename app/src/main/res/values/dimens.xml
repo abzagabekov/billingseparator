@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="tv_titles_margin">8dp</dimen>
+    <dimen name="tv_titles_padding">8dp</dimen>
+    <dimen name="et_margin">8dp</dimen>
+    <dimen name="sv_margin">10dp</dimen>
+    <dimen name="sv_params_height">270dp</dimen>
+    <dimen name="cl_margin">8dp</dimen>
+    <dimen name="btn_add_padding">6dp</dimen>
+    <dimen name="big_label">8dp</dimen>
+    <dimen name="table_tv_right_margin">20dp</dimen>
+</resources>

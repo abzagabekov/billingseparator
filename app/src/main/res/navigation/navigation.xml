@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/titleFragment">
+
+    <fragment
+        android:id="@+id/titleFragment"
+        android:name="com.example.billingseparator.title.TitleFragment"
+        android:label="TitleFragment"
+        tools:layout="@layout/title_fragment">
+        <action
+            android:id="@+id/action_titleFragment_to_paramsFragment"
+            app:destination="@id/paramsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paramsFragment"
+        android:name="com.example.billingseparator.params.ParamsFragment"
+        android:label="fragment_params"
+        tools:layout="@layout/params_fragment" >
+        <action
+            android:id="@+id/action_paramsFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.billingseparator.result.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/result_fragment" />
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.example.billingseparator.products.ProductsFragment"
+        android:label="products_fragment"
+        tools:layout="@layout/products_fragment" >
+        <action
+            android:id="@+id/action_productsFragment_to_resultFragment"
+            app:destination="@id/resultFragment"
+            app:popUpTo="@+id/titleFragment" />
+        <argument
+            android:name="participants"
+            app:argType="integer[]"
+            app:nullable="true" />
+    </fragment>
+</navigation>

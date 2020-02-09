@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Billing Separator</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="string_app_title">Распределитель счета</string>
+    <string name="string_app_description">Данная программа предназначена для распределения общего счета между нескольких участников</string>
+    <string name="string_start">Начать</string>
+    <string name="enter_name">Введите имя</string>
+    <string name="enter_product_name">Наименование</string>
+    <string name="add_participants">Добавление участников</string>
+    <string name="add">Добавить</string>
+    <string name="str_continue">Продолжить</string>
+    <string name="clear">Очистить</string>
+    <string name="add_products">Добавление продуктов</string>
+    <string name="hint_price">Стоимость</string>
+    <string name="participants">Участники:</string>
+    <string name="sumary">Итого:</string>
+    <string name="calculate">Рассчитать</string>
+</resources>

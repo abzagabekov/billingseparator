@@ -1,0 +1,66 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- New MaterialComponents attributes. -->
+        <item name="colorPrimaryVariant">@color/my_app_primary_variant_color</item>
+        <item name="colorSecondaryVariant">@color/my_app_secondary_variant_color</item>
+        <item name="colorSurface">@color/my_app_surface_color</item>
+        <item name="colorOnPrimary">@color/my_app_color_on_primary</item>
+        <item name="colorOnSecondary">@color/my_app_color_on_secondary</item>
+        <item name="colorOnBackground">@color/my_app_color_on_background</item>
+        <item name="colorOnError">@color/my_app_color_on_error</item>
+        <item name="colorOnSurface">@color/my_app_color_on_surface</item>
+        <item name="scrimBackground">@color/mtrl_scrim_color</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.MaterialComponents.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.MaterialComponents.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.MaterialComponents.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.MaterialComponents.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.MaterialComponents.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MaterialComponents.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MaterialComponents.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MaterialComponents.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MaterialComponents.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.MaterialComponents.Body2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
+        <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
+
+    </style>
+
+    <style name="tv_titles_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/tv_titles_margin</item>
+        <item name="android:layout_marginTop">@dimen/tv_titles_margin</item>
+        <item name="android:layout_marginEnd">@dimen/tv_titles_margin</item>
+        <item name="android:layout_marginBottom">@dimen/tv_titles_margin</item>
+        <item name="android:paddingStart">@dimen/tv_titles_padding</item>
+        <item name="android:paddingTop">@dimen/tv_titles_padding</item>
+        <item name="android:paddingEnd">@dimen/tv_titles_padding</item>
+        <item name="android:paddingBottom">@dimen/tv_titles_padding</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="btn_clear" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginStart">72dp</item>
+    </style>
+
+    <color name="my_app_primary_variant_color">#D81B60</color>
+    <color name="my_app_secondary_variant_color">#D87C60</color>
+    <color name="my_app_surface_color">#D45C</color>
+    <color name="my_app_color_on_primary">#6200EE</color>
+    <color name="my_app_color_on_secondary">#3700B3</color>
+    <color name="my_app_color_on_background">#0A000000</color>
+    <color name="my_app_color_on_error">#14000000</color>
+    <color name="my_app_color_on_surface">#CF6679</color>
+</resources>

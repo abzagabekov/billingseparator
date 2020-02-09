@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="paramsViewModel"
+            type="com.example.billingseparator.params.ParamsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/params_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".params.ParamsFragment">
+
+        <TextView
+            android:id="@+id/tvAddNewPersons"
+            android:text="@string/add_participants"
+            style="@style/tv_titles_style" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/et_margin"
+            android:layout_marginTop="@dimen/et_margin"
+            android:layout_marginEnd="@dimen/et_margin"
+            android:layout_marginBottom="@dimen/et_margin"
+            android:ems="10"
+            android:hint="@string/enter_name"
+            android:inputType="textPersonName|textCapSentences|textCapWords"
+            android:textAlignment="viewStart" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/cl_margin"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAdd"
+                style="@android:style/Widget.Material.Button.Colored"
+                android:layout_width="107dp"
+                android:layout_height="49dp"
+                android:layout_gravity="center"
+                android:onClick="@{() -> paramsViewModel.onPersonAdd(etName.getText().toString())}"
+                android:text="@string/add"
+                app:layout_constraintBottom_toBottomOf="@+id/btnClear"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.156"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                tools:targetApi="m" />
+
+            <Button
+                android:id="@+id/btnClear"
+                style="@style/btn_clear"
+                android:onClick="@{() -> paramsViewModel.onPersonDelete()}"
+                android:text="@string/clear"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/btnAdd"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ScrollView
+            android:id="@+id/svParticipantsList"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/sv_params_height"
+            android:layout_marginLeft="@dimen/sv_margin"
+            android:layout_marginTop="@dimen/sv_margin"
+            android:layout_marginRight="@dimen/sv_margin"
+            android:layout_marginBottom="@dimen/sv_margin">
+
+            <TextView
+                android:id="@+id/tvParticipantsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="8sp"
+                android:text="@{paramsViewModel.personsString}" />
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btn_continue"
+            android:layout_width="276dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#4CAF50"
+            android:text="@string/str_continue"
+            android:textColor="@android:color/background_light"
+            android:onClick="@{() -> paramsViewModel.onContinue()}"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+</layout>
