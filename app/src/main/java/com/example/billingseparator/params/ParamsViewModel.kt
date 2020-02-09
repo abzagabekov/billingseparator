@@ -9,9 +9,11 @@ import com.example.billingseparator.formatPersons
 
 class ParamsViewModel : ViewModel() {
 
-    private val _participants = MutableLiveData<MutableList<Person>>()
-    val participants: LiveData<MutableList<Person>>
-        get() = _participants
+    companion object {
+        private val _participants = MutableLiveData<MutableList<Person>>()
+        val participants: LiveData<MutableList<Person>>
+            get() = _participants
+    }
 
     val personsString = Transformations.map(_participants) { participants ->
         formatPersons(participants)
@@ -58,5 +60,6 @@ class ParamsViewModel : ViewModel() {
     fun donePersonAdd() {
         _personAddedEvent.value = false
     }
+
 
 }

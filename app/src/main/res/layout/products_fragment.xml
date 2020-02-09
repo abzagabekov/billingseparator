@@ -48,7 +48,7 @@
             android:layout_marginBottom="@dimen/et_margin"
             android:ems="10"
             android:hint="@string/hint_price"
-            android:inputType="number" />
+            android:inputType="numberDecimal" />
 
 
         <TextView
@@ -92,7 +92,6 @@
                 android:layout_width="107dp"
                 android:layout_height="49dp"
                 android:layout_gravity="center"
-
                 android:text="@string/add"
                 app:layout_constraintBottom_toBottomOf="@+id/btnClear"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +104,7 @@
             <Button
                 android:id="@+id/btnClear"
                 style="@style/btn_clear"
-
+                android:onClick="@{() -> productsViewModel.onProductDelete()}"
                 android:text="@string/clear"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -184,6 +183,7 @@
             android:layout_margin="@dimen/btn_margin"
             android:background="@android:color/holo_green_dark"
             android:text="@string/calculate"
+            android:onClick="@{() -> productsViewModel.onCalculate()}"
             android:textSize="18sp" />
 
 

@@ -37,7 +37,7 @@ class ParamsFragment : Fragment() {
                 val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(et_name.windowToken, 0)
                 paramsViewModel.donePersonAdd()
-                et_name.text.clear()
+                binding.etName.text.clear()
             }
         })
 

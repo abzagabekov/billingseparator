@@ -1,14 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".result.ResultFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="resultViewModel"
+            type="com.example.billingseparator.result.ResultViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        tools:context=".result.ResultFragment">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/tv_title_result"
+            style="@style/tv_titles_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/results" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:id="@+id/table_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:padding="6dp"
+                android:stretchColumns="*"
+                tools:context=".MainActivity">
+
+                <TableRow
+                    android:id="@+id/tr_header"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/table_row_bg"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_person_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/table_cell_bg"
+                        android:paddingRight="10dp"
+                        android:text="@string/person_name"
+                        android:textAppearance="@android:style/TextAppearance.Material"
+                        android:textColor="@color/design_default_color_on_secondary" />
+
+                    <TextView
+                        android:id="@+id/tv_person_sum"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="@string/sum"
+                        android:textColor="@color/design_default_color_on_secondary" />
+                </TableRow>
+
+                <!--
+            <include layout="@layout/sample_table_row" />
+             -->
+
+            </TableLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

@@ -17,4 +17,7 @@
     <string name="participants">Участники:</string>
     <string name="sumary">Итого:</string>
     <string name="calculate">Рассчитать</string>
+    <string name="results">Итоги</string>
+    <string name="person_name">Имя</string>
+    <string name="sum">Сумма</string>
 </resources>
