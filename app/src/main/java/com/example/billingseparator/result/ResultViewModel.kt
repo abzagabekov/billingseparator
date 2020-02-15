@@ -1,5 +1,7 @@
 package com.example.billingseparator.result
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.billingseparator.database.Person
 import com.example.billingseparator.params.ParamsViewModel
@@ -7,8 +9,11 @@ import com.example.billingseparator.products.ProductsViewModel
 
 class ResultViewModel : ViewModel() {
 
+    init {
+        countResults()
+    }
 
-    fun countResults() {
+    private fun countResults() {
 
         ProductsViewModel.products.value?.forEach {
             val fraction = it.productPrice / it.productBuyers.size

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TableRow
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 import com.example.billingseparator.R
@@ -25,15 +26,13 @@ class ResultFragment : Fragment() {
         val resultViewModel = ViewModelProviders.of(this).get(ResultViewModel::class.java)
         binding.resultViewModel = resultViewModel
 
-        resultViewModel.countResults()
-
-        var summary: Double? = null
+        var summary: Double = 0.0
         resultViewModel.getParticipants()?.forEach {
             val newRow =
                 inflater.inflate(R.layout.sample_table_row, container, false) as TableRow
             newRow.tv_product_item.text = it.name
             newRow.tv_price_item.text = it.billSummary.toString()
-            summary = it.billSummary
+            summary = summary.plus(it.billSummary)
             binding.tableResult.addView(newRow)
         }
 

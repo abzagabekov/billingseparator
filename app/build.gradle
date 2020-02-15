@@ -52,4 +52,8 @@ dependencies {
 
     // Material
     implementation 'com.google.android.material:material:1.1.0'
+
+    // Room
+    implementation "androidx.room:room-runtime:2.0.0"
+    kapt "androidx.room:room-compiler:2.0.0"
 }
