@@ -16,6 +16,7 @@ import com.example.billingseparator.R
 import com.example.billingseparator.databinding.ParamsFragmentBinding
 import android.view.inputmethod.InputMethodManager
 import androidx.navigation.fragment.findNavController
+import com.example.billingseparator.database.BillDatabase
 import kotlinx.android.synthetic.main.params_fragment.*
 
 
@@ -27,7 +28,11 @@ class ParamsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val binding: ParamsFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.params_fragment, container, false)
-        val paramsViewModel = ViewModelProviders.of(this).get(ParamsViewModel::class.java)
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = BillDatabase.getInstance(application).personDatabaseDao
+        val viewModelFactory = ParamsViewModelFactory(dataSource, application)
+        val paramsViewModel = ViewModelProviders.of(this, viewModelFactory).get(ParamsViewModel::class.java)
         binding.paramsViewModel = paramsViewModel
         binding.lifecycleOwner = this
 
@@ -42,12 +47,8 @@ class ParamsFragment : Fragment() {
         })
 
         paramsViewModel.navigateToProducts.observe(this, Observer {
-            if (!it.isNullOrEmpty()) {
-                val ids = IntArray(it.size)
-                for (i in 0 until it.size) {
-                    ids[i] = it[i].personId
-                }
-                this.findNavController().navigate(ParamsFragmentDirections.actionParamsFragmentToProductsFragment(ids))
+            if (it == true) {
+                this.findNavController().navigate(ParamsFragmentDirections.actionParamsFragmentToProductsFragment())
                 paramsViewModel.doneNavigating()
             }
         })

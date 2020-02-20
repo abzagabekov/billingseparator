@@ -36,10 +36,6 @@
         <action
             android:id="@+id/action_productsFragment_to_resultFragment"
             app:destination="@id/resultFragment"
-            app:popUpTo="@+id/titleFragment" />
-        <argument
-            android:name="participants"
-            app:argType="integer[]"
-            app:nullable="true" />
+            app:popUpTo="@+id/paramsFragment" />
     </fragment>
 </navigation>

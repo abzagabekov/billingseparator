@@ -1,32 +1,24 @@
 package com.example.billingseparator.result
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.billingseparator.database.Person
-import com.example.billingseparator.params.ParamsViewModel
-import com.example.billingseparator.products.ProductsViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import com.example.billingseparator.database.persons.Person
+import com.example.billingseparator.database.persons.PersonDatabaseDao
+import com.example.billingseparator.database.products.Product
+import com.example.billingseparator.database.products.ProductDatabaseDao
+import kotlinx.coroutines.*
 
-class ResultViewModel : ViewModel() {
+class ResultViewModel(private val personsDatabase: PersonDatabaseDao,
+                      private val productsDatabase: ProductDatabaseDao,
+                      application: Application) : AndroidViewModel(application) {
 
-    init {
-        countResults()
-    }
+    private val viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private fun countResults() {
+    private val products = productsDatabase.getAllProducts()
+    private val participants = personsDatabase.getAllPersons()
 
-        ProductsViewModel.products.value?.forEach {
-            val fraction = it.productPrice / it.productBuyers.size
+    fun getParticipants() = participants
 
-            it.productBuyers.forEach {buyerId ->
-                ParamsViewModel.participants.value?.forEach {
-                    if (it.personId == buyerId) {
-                        it.billSummary += fraction
-                    }
-                }
-            }
-        }
-    }
 
-    fun getParticipants(): List<Person>? = ParamsViewModel.participants.value
 }

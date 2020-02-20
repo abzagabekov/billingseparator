@@ -1,14 +1,18 @@
 package com.example.billingseparator
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
 import android.os.Build
 import android.text.Html
 import android.text.Spanned
+import androidx.annotation.RequiresApi
 import androidx.core.text.HtmlCompat
-import com.example.billingseparator.database.Person
+import androidx.room.TypeConverter
+import com.example.billingseparator.database.persons.Person
 import java.text.SimpleDateFormat
+import java.util.stream.Collectors
 
+val chipsIdsPrefix = 0
+val tableRowsIdsPrefix = 100000
 
 fun formatPersons(participants: List<Person>): Spanned {
     val sb = StringBuilder()
@@ -30,5 +34,13 @@ fun formatPersons(participants: List<Person>): Spanned {
 fun convertLongToDateString(systemTime: Long): String {
     return SimpleDateFormat("EEEE MMM-dd-yyyy' Time: 'HH:mm")
         .format(systemTime).toString()
+}
+
+fun personsToMap(participants: List<Person>): Map<Long, String> {
+    val res = mutableMapOf<Long, String>()
+    participants.forEach{
+        res[it.personId] = it.name
+    }
+    return res
 }
 

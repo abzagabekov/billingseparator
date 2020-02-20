@@ -1,21 +1,22 @@
 package com.example.billingseparator.params
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import com.example.billingseparator.database.Person
+import android.app.Application
+import android.util.Log
+import androidx.lifecycle.*
+import com.example.billingseparator.database.persons.Person
+import com.example.billingseparator.database.persons.PersonDatabaseDao
 import com.example.billingseparator.formatPersons
+import kotlinx.coroutines.*
 
-class ParamsViewModel : ViewModel() {
+class ParamsViewModel(private val personDatabase: PersonDatabaseDao, application: Application) : AndroidViewModel(application) {
 
-    companion object {
-        private val _participants = MutableLiveData<MutableList<Person>>()
-        val participants: LiveData<MutableList<Person>>
-            get() = _participants
-    }
+    private var viewModelJob = Job()
 
-    val personsString = Transformations.map(_participants) { participants ->
+    private var uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
+    private val participants = personDatabase.getAllPersons()
+
+    val personsString = Transformations.map(participants) { participants ->
         formatPersons(participants)
     }
 
@@ -23,34 +24,53 @@ class ParamsViewModel : ViewModel() {
     val personAddedEvent: LiveData<Boolean>
         get() = _personAddedEvent
 
-    private var _navigateToProducts = MutableLiveData<MutableList<Person>>()
-    val navigateToProducts: LiveData<MutableList<Person>>
+    private var _navigateToProducts = MutableLiveData<Boolean?>()
+    val navigateToProducts: LiveData<Boolean?>
         get() = _navigateToProducts
 
-    init {
-        _participants.value = mutableListOf()
-    }
 
     fun onPersonAdd(name: String) {
 
         if (!name.isNullOrEmpty()) {
-            val oldList: MutableList<Person>? = _participants.value
-            oldList?.add(Person(name))
-            _participants.value = oldList
-            _personAddedEvent.value = true
+            uiScope.launch {
+                val newPerson = Person(name = name, billId = 1)
+                insert(newPerson)
+                _personAddedEvent.value = true
+            }
         }
     }
 
+    private suspend fun insert(person: Person) {
+        withContext(Dispatchers.IO) {
+            personDatabase.insert(person)
+        }
+    }
+
+
     fun onPersonDelete() {
-        val oldList: MutableList<Person>? = _participants.value
-        if (!oldList.isNullOrEmpty()) {
-            oldList.removeAt(oldList.size - 1)
-            _participants.value = oldList
+        uiScope.launch {
+            val lastPerson: Person? = getLastPerson()
+            if (lastPerson != null)
+                delete(lastPerson.personId)
+        }
+    }
+
+    private suspend fun getLastPerson(): Person? {
+        var res: Person? = null
+        withContext(Dispatchers.IO) {
+            res = personDatabase.getLastPerson()
+        }
+        return res
+    }
+
+    private suspend fun delete(personId: Long) {
+        withContext(Dispatchers.IO) {
+            personDatabase.delete(personId)
         }
     }
 
     fun onContinue() {
-        _navigateToProducts.value = _participants.value
+        _navigateToProducts.value = true
     }
 
     fun doneNavigating() {
