@@ -26,8 +26,7 @@ class ResultFragment : Fragment() {
         val binding: ResultFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.result_fragment, container, false)
         val application = requireNotNull(this.activity).application
         val personsDatabase = BillDatabase.getInstance(application).personDatabaseDao
-        val productsDatabase = BillDatabase.getInstance(application).productDatabaseDao
-        val viewModelFactory = ResultViewModelFactory(personsDatabase, productsDatabase, application)
+        val viewModelFactory = ResultViewModelFactory(personsDatabase, application)
         val resultViewModel = ViewModelProviders.of(this, viewModelFactory).get(ResultViewModel::class.java)
         binding.resultViewModel = resultViewModel
 
