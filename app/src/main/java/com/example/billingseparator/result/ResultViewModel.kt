@@ -6,9 +6,10 @@ import com.example.billingseparator.database.persons.PersonDatabaseDao
 
 
 class ResultViewModel(personsDatabase: PersonDatabaseDao,
-                      application: Application) : AndroidViewModel(application) {
+                      application: Application,
+                      val billId: Long) : AndroidViewModel(application) {
 
-    private val participants = personsDatabase.getAllPersons()
+    private val participants = personsDatabase.getPersonsByBill(billId)
 
     fun getParticipants() = participants
 

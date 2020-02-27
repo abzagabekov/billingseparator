@@ -39,7 +39,7 @@ class TitleFragment : Fragment() {
                 if (firstBill == null) {
                     insert(billDatabase, Bill(billName = "FirstBill"))
                 }
-                findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToParamsFragment())
+                findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToBillsFragment())
             }
         }
 

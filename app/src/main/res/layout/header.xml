@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_header"
+    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fontFamily="serif-monospace"
+    android:padding="8dp"
+    android:text="@string/text_bills_header"
+    android:textAlignment="center"
+    android:textAppearance="?android:textAppearanceLarge"
+    android:textSize="24sp"
+    android:textStyle="bold">
+
+</TextView>

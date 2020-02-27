@@ -10,10 +10,11 @@ import javax.sql.DataSource
 
 class ProductsViewModelFactory(private val dataSource: ProductDatabaseDao,
                                private val personsData: PersonDatabaseDao,
-                               private val application: Application) : ViewModelProvider.Factory {
+                               private val application: Application,
+                               private val billId: Long) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ProductsViewModel::class.java)) {
-            return ProductsViewModel(dataSource, personsData, application) as T
+            return ProductsViewModel(dataSource, personsData, application, billId) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -27,4 +27,7 @@ interface ProductDatabaseDao {
     @Query("SELECT * FROM products_table ORDER BY productId DESC LIMIT 1")
     fun getLastProduct(): Product?
 
+    @Query("SELECT * FROM products_table WHERE related_bill_id = :billId ORDER BY productId DESC")
+    fun getProductsByBill(billId: Long): LiveData<List<Product>>
+
 }

@@ -17,16 +17,17 @@ import java.util.function.LongFunction
 
 class ProductsViewModel(private val productsDatabase: ProductDatabaseDao,
                         private val personsDatabase: PersonDatabaseDao,
-                        application: Application) : AndroidViewModel(application) {
+                        application: Application,
+                        val billId: Long) : AndroidViewModel(application) {
 
 
 
-    val products = productsDatabase.getAllProducts()
+    val products = productsDatabase.getProductsByBill(billId)
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    val participants = personsDatabase.getAllPersons()
+    val participants = personsDatabase.getPersonsByBill(billId)
 
 
     private var _eventProductAdd = false
@@ -98,7 +99,7 @@ class ProductsViewModel(private val productsDatabase: ProductDatabaseDao,
             name = productName,
             productPrice = productPrice,
             productBuyers = productBuyers,
-            billId = 1
+            billId = billId
         )
         uiScope.launch {
             insert(newProduct)

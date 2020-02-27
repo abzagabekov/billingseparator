@@ -31,7 +31,8 @@ class ParamsFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dataSource = BillDatabase.getInstance(application).personDatabaseDao
-        val viewModelFactory = ParamsViewModelFactory(dataSource, application)
+        val arguments = ParamsFragmentArgs.fromBundle(arguments!!)
+        val viewModelFactory = ParamsViewModelFactory(dataSource, application, arguments.billId)
         val paramsViewModel = ViewModelProviders.of(this, viewModelFactory).get(ParamsViewModel::class.java)
         binding.paramsViewModel = paramsViewModel
         binding.lifecycleOwner = this
@@ -48,7 +49,7 @@ class ParamsFragment : Fragment() {
 
         paramsViewModel.navigateToProducts.observe(this, Observer {
             if (it == true) {
-                this.findNavController().navigate(ParamsFragmentDirections.actionParamsFragmentToProductsFragment())
+                this.findNavController().navigate(ParamsFragmentDirections.actionParamsFragmentToProductsFragment(paramsViewModel.billId))
                 paramsViewModel.doneNavigating()
             }
         })

@@ -8,13 +8,13 @@ import com.example.billingseparator.database.persons.PersonDatabaseDao
 import com.example.billingseparator.formatPersons
 import kotlinx.coroutines.*
 
-class ParamsViewModel(private val personDatabase: PersonDatabaseDao, application: Application) : AndroidViewModel(application) {
+class ParamsViewModel(private val personDatabase: PersonDatabaseDao, application: Application, val billId: Long) : AndroidViewModel(application) {
 
     private var viewModelJob = Job()
 
     private var uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private val participants = personDatabase.getAllPersons()
+    private val participants = personDatabase.getPersonsByBill(billId)
 
     val personsString = Transformations.map(participants) { participants ->
         formatPersons(participants)
@@ -33,7 +33,7 @@ class ParamsViewModel(private val personDatabase: PersonDatabaseDao, application
 
         if (!name.isNullOrEmpty()) {
             uiScope.launch {
-                val newPerson = Person(name = name, billId = 1)
+                val newPerson = Person(name = name, billId = billId)
                 insert(newPerson)
                 _personAddedEvent.value = true
             }

@@ -20,4 +20,5 @@
     <string name="results">Итоги</string>
     <string name="person_name">Имя</string>
     <string name="sum">Сумма</string>
+    <string name="text_bills_header">Все счета</string>
 </resources>

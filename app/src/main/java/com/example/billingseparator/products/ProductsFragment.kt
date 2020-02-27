@@ -45,7 +45,8 @@ class ProductsFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = BillDatabase.getInstance(application).productDatabaseDao
         val personsData = BillDatabase.getInstance(application).personDatabaseDao
-        val viewModelFactory = ProductsViewModelFactory(dataSource, personsData, application)
+        val arguments = ProductsFragmentArgs.fromBundle(arguments!!)
+        val viewModelFactory = ProductsViewModelFactory(dataSource, personsData, application, arguments.billId)
         val productsViewModel = ViewModelProviders.of(this, viewModelFactory).get(ProductsViewModel::class.java)
         binding.productsViewModel = productsViewModel
 
@@ -93,7 +94,7 @@ class ProductsFragment : Fragment() {
 
         productsViewModel.eventNavigateToResults.observe(this, Observer {
             if (it) {
-                this.findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToResultFragment())
+                this.findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToResultFragment(productsViewModel.billId))
                 productsViewModel.doneNavigating()
             }
         })

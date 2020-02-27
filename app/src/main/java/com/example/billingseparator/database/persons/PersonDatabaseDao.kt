@@ -30,4 +30,7 @@ interface PersonDatabaseDao {
     @Query("SELECT * FROM persons_table ORDER BY personId DESC LIMIT 1")
     fun getLastPerson(): Person?
 
+    @Query("SELECT * FROM persons_table WHERE related_bill_id = :billId ORDER BY personId DESC")
+    fun getPersonsByBill(billId: Long): LiveData<List<Person>>
+
 }
