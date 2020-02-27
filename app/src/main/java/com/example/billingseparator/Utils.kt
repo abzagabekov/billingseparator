@@ -13,6 +13,7 @@ import java.util.stream.Collectors
 
 val chipsIdsPrefix = 0
 val tableRowsIdsPrefix = 100000
+val newBillNamePrefix = "Счет"
 
 fun formatPersons(participants: List<Person>): Spanned {
     val sb = StringBuilder()

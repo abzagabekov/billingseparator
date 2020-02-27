@@ -89,6 +89,14 @@ class ProductsFragment : Fragment() {
                 val removedRow = view?.findViewById<TableRow>(productsViewModel.deletedProduct!!.productId.toInt() + tableRowsIdsPrefix)
                 binding.tl.removeView(removedRow)
                 productsViewModel.doneProductDelete()
+            } else if (!productsViewModel.eventProductAdd && !productsViewModel.eventProductDelete) {
+                it.forEach{
+                    val newRow = inflater.inflate(R.layout.sample_table_row, container, false) as TableRow
+                    newRow.id = it.productId.toInt() + tableRowsIdsPrefix
+                    newRow.tv_product_item.text = it.name
+                    newRow.tv_price_item.text = it.productPrice.toString()
+                    binding.tl.addView(newRow)
+                }
             }
         })
 

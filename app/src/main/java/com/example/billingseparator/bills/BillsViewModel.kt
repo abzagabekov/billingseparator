@@ -6,12 +6,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.billingseparator.database.bills.Bill
 import com.example.billingseparator.database.bills.BillDatabaseDao
+import com.example.billingseparator.newBillNamePrefix
 import kotlinx.coroutines.*
 
 class BillsViewModel(private val billDatabase: BillDatabaseDao, application: Application) : AndroidViewModel(application) {
 
     val bills = billDatabase.getAllBills()
-    private val newBillNamePrefix = "Счет"
 
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
