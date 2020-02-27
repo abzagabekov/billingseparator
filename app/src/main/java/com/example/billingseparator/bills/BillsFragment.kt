@@ -48,7 +48,7 @@ class BillsFragment : Fragment() {
 
         billsViewModel.bills.observe(viewLifecycleOwner, Observer {
             it.let {
-                adapter.addHeaderAndSubmitList(it)
+                adapter.submitList(it)
             }
         })
 

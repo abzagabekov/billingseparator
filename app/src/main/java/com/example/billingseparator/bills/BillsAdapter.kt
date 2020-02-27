@@ -16,47 +16,16 @@ import kotlinx.coroutines.withContext
 import java.lang.ClassCastException
 
 
-private const val ITEM_VIEW_TYPE_HEADER = 0
-private const val ITEM_VIEW_TYPE_ITEM = 1
+class BillsAdapter(val clickListener: BillsListener) : ListAdapter<Bill, BillsAdapter.ViewHolder>(BillsDiffCallback()) {
 
-class BillsAdapter(val clickListener: BillsListener) : ListAdapter<DataItem, RecyclerView.ViewHolder>(BillsDiffCallback()) {
 
-    private val adapterScope = CoroutineScope(Dispatchers.Default)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when(viewType) {
-            ITEM_VIEW_TYPE_HEADER -> TextViewHolder.from(parent)
-            ITEM_VIEW_TYPE_ITEM -> ViewHolder.from(parent)
-            else -> throw ClassCastException("Unknown viewType $viewType")
-        }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
     }
-
-    fun addHeaderAndSubmitList(list: List<Bill>?) {
-        adapterScope.launch {
-            val items = when(list) {
-                null -> listOf(DataItem.Header)
-                else -> listOf(DataItem.Header) + list.map { DataItem.BillItem(it) }
-            }
-            withContext(Dispatchers.Main) {
-                submitList(items)
-            }
-        }
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return when(getItem(position)) {
-            is DataItem.Header -> ITEM_VIEW_TYPE_HEADER
-            is DataItem.BillItem -> ITEM_VIEW_TYPE_ITEM
-        }
-    }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder) {
-            is ViewHolder -> {
-                val item = getItem(position) as DataItem.BillItem
-                holder.bind(item.bill, clickListener)
-            }
-        }
+    
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(getItem(position), clickListener)
     }
 
 
@@ -82,12 +51,12 @@ class BillsAdapter(val clickListener: BillsListener) : ListAdapter<DataItem, Rec
     }
 }
 
-class BillsDiffCallback : DiffUtil.ItemCallback<DataItem>() {
-    override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-        return oldItem.id == newItem.id
+class BillsDiffCallback : DiffUtil.ItemCallback<Bill>() {
+    override fun areItemsTheSame(oldItem: Bill, newItem: Bill): Boolean {
+        return oldItem.billId == newItem.billId
     }
 
-    override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
+    override fun areContentsTheSame(oldItem: Bill, newItem: Bill): Boolean {
         return oldItem == newItem
     }
 
@@ -97,19 +66,6 @@ class BillsListener(val clickListener: (billId: Long) -> Unit) {
     fun onClick(bill: Bill) = clickListener(bill.billId)
 }
 
-sealed class DataItem{
-    data class BillItem(val bill: Bill) : DataItem() {
-        override val id: Long
-            get() = bill.billId
-    }
-
-    object Header: DataItem() {
-        override val id: Long
-            get() = Long.MIN_VALUE
-    }
-
-    abstract val id: Long
-}
 
 class TextViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     companion object {
