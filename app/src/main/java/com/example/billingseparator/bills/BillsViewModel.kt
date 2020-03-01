@@ -41,4 +41,18 @@ class BillsViewModel(private val billDatabase: BillDatabaseDao, application: App
     fun onParamsNavigated() {
         _navigateToParams.value = null
     }
+
+    fun onBillsDelete(bills: LongArray) {
+        uiScope.launch {
+            bills.forEach {
+                delete(it)
+            }
+        }
+    }
+
+    private suspend fun delete(billId: Long) {
+        withContext(Dispatchers.IO) {
+            billDatabase.delete(billId)
+        }
+    }
 }
