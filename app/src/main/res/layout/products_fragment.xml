@@ -154,7 +154,8 @@
                         android:paddingRight="10dp"
                         android:text="@string/enter_product_name"
                         android:textAppearance="@android:style/TextAppearance.Material"
-                        android:textColor="@color/design_default_color_on_secondary" />
+                        android:textColor="@color/design_default_color_on_secondary"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_price"
@@ -162,7 +163,8 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
                         android:text="@string/hint_price"
-                        android:textColor="@color/design_default_color_on_secondary" />
+                        android:textColor="@color/design_default_color_on_secondary"
+                        android:textStyle="bold" />
                 </TableRow>
 
                 <!--
