@@ -11,4 +11,6 @@
     <dimen name="table_tv_right_margin">20dp</dimen>
     <dimen name="btn_margin">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="card_view_corner">12dp</dimen>
+    <dimen name="card_view_margin">2dp</dimen>
 </resources>
