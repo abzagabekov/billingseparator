@@ -21,4 +21,7 @@
     <string name="person_name">Имя</string>
     <string name="sum">Сумма</string>
     <string name="text_bills_header">Все счета</string>
+    <string name="title_participants">Участники</string>
+    <string name="title_products">Продукты</string>
+    <string name="title_results">Результат</string>
 </resources>
