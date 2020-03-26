@@ -48,7 +48,7 @@ class ResultFragment : Fragment() {
                 val newRow =
                     inflater.inflate(R.layout.sample_table_row, container, false) as TableRow
                 newRow.tv_product_item.text = it.name
-                newRow.tv_price_item.text = it.billSummary.toString()
+                newRow.tv_price_item.text = String.format("%.1f", it.billSummary)
                 summary = summary.plus(it.billSummary)
                 binding.tableResult.addView(newRow)
             }

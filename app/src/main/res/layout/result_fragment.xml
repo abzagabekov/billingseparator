@@ -49,7 +49,8 @@
                         android:paddingRight="10dp"
                         android:text="@string/person_name"
                         android:textAppearance="@android:style/TextAppearance.Material"
-                        android:textColor="@color/design_default_color_on_secondary" />
+                        android:textColor="@color/design_default_color_on_secondary"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_person_sum"
@@ -57,7 +58,8 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="10dp"
                         android:text="@string/sum"
-                        android:textColor="@color/design_default_color_on_secondary" />
+                        android:textColor="@color/design_default_color_on_secondary"
+                        android:textStyle="bold" />
                 </TableRow>
 
                 <!--
