@@ -23,7 +23,7 @@ class BillsAdapter(val clickListener: BillsListener) : ListAdapter<Bill, BillsAd
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
-    
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position), clickListener)
     }
