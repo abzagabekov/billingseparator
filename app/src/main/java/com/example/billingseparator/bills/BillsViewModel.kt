@@ -22,9 +22,10 @@ class BillsViewModel(private val billDatabase: BillDatabaseDao, application: App
 
     fun onBillAdd() {
         uiScope.launch {
-            val newBill = Bill(billName = newBillNamePrefix)
-            insert(newBill)
-            _navigateToParams.value = newBill.billId
+            var newBill: Bill? = Bill(billName = newBillNamePrefix)
+            insert(newBill!!)
+            newBill = getLastBill()
+            _navigateToParams.value = newBill?.billId
         }
     }
 
@@ -32,6 +33,14 @@ class BillsViewModel(private val billDatabase: BillDatabaseDao, application: App
         withContext(Dispatchers.IO) {
             billDatabase.insert(bill)
         }
+    }
+
+    private suspend fun getLastBill(): Bill? {
+        var res: Bill? = null
+        withContext(Dispatchers.IO) {
+            res = billDatabase.getLastBill()
+        }
+        return res
     }
 
     fun onBillClicked(billId: Long) {
