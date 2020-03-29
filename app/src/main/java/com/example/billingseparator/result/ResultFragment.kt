@@ -13,6 +13,7 @@ import android.os.Environment
 import android.os.Handler
 import android.view.*
 import android.widget.TableRow
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.ShareActionProvider
 import androidx.core.view.MenuItemCompat
@@ -51,6 +52,7 @@ class ResultFragment : Fragment() {
         return binding.root
     }
 
+
     private fun showResults(
         resultViewModel: ResultViewModel,
         inflater: LayoutInflater,
@@ -73,19 +75,25 @@ class ResultFragment : Fragment() {
             newRow.tv_product_item.text = ""
             binding.tableResult.addView(newRow)
 
-            (MenuItemCompat.getActionProvider(menuItem) as ShareActionProvider).setShareIntent(getShareIntent())
         })
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_result, menu)
-        menuItem = menu.findItem(R.id.menu_item_share)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_item_share -> {
+                startActivity(Intent.createChooser(getShareIntent(), "Share via"))
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun getShareIntent(): Intent {
-
         table_result.isDrawingCacheEnabled = true
         val bitmap = table_result.drawingCache
         val appDir = File(Environment.getExternalStorageDirectory().absolutePath + "/" + activity?.packageName)

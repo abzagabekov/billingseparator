@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/menu_item_share"
         app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:visible="true"
         android:title="@string/share"
-        app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider" />
+        android:icon="@drawable/share"/>
 </menu>
