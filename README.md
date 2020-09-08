@@ -16,4 +16,5 @@ It leverages the following components from the Jetpack library:
 ### Download
 
 * [Android](https://play.google.com/store/apps/details?id=com.abzagabekov.billingseparator)
+
 [<img src="resources/img/google-play-badge.png" height="50">](https://play.google.com/store/apps/details?id=org.jitsi.meet)
